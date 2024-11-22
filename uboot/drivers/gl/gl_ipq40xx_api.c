@@ -378,6 +378,7 @@ int upgrade(){
 					openwrt_firmware_start, openwrt_firmware_size, openwrt_firmware_start);
 				break;
 			case MACH_TYPE_IPQ40XX_AP_DK01_1_C2:
+			case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
 				sprintf(cmd, "nand device 1 && nand erase 0x%x 0x%x && nand write 0x88000000 0x%x $filesize",
 					openwrt_firmware_start, openwrt_firmware_size, openwrt_firmware_start);
 				break;
@@ -936,6 +937,18 @@ void gl_names_init()
 		g_gpio_led_upgrade_erase_flashing=GPIO_AP1300_POWER_LED;
 		g_is_flashing_power_led=1;
 		break;
+	case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
+		sprintf(openwrt_fw_name, "openwrt-%s.bin", "*");
+		sprintf(qsdk_fw_name, "qsdk-%s.bin", "*");
+		openwrt_firmware_start=0x0;
+		openwrt_firmware_size=0x8000000;
+		g_gpio_power_led=GPIO_AP4220_POWER_LED;
+		g_gpio_led_tftp_transfer_flashing=GPIO_AP4220_POWER_LED;
+		g_gpio_led_upgrade_write_flashing_1=GPIO_AP4220_2GWIFI_LED;
+		g_gpio_led_upgrade_write_flashing_2=GPIO_AP4220_5GWIFI_LED;
+		g_gpio_led_upgrade_erase_flashing=GPIO_AP4220_POWER_LED;
+		g_is_flashing_power_led=1;
+		break;
 	case MACH_TYPE_IPQ40XX_AP_DK01_1_C1:
 		sprintf(uboot_name, "uboot-gl-%s.bin", "b1300");
 		sprintf(openwrt_fw_name, "openwrt-gl-%s.bin", "b1300");
@@ -964,6 +977,11 @@ void LED_INIT(void)
 			gpio_set_value(GPIO_AP1300_POWER_LED, 1);
 			gpio_set_value(GPIO_AP1300_INET_LED, 0);
 			break;
+		case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
+			gpio_set_value(GPIO_AP4220_POWER_LED, 1);
+			gpio_set_value(GPIO_AP4220_2GWIFI_LED, 0);
+			gpio_set_value(GPIO_AP4220_5GWIFI_LED, 0);
+			break;
 		case MACH_TYPE_IPQ40XX_AP_DK04_1_C1:
 			gpio_set_value(GPIO_S1300_MESH_LED, 0);
 			gpio_set_value(GPIO_S1300_WIFI_LED, 0);
@@ -986,6 +1004,11 @@ void LED_BOOTING(void)
 		case MACH_TYPE_IPQ40XX_AP_DK01_1_C2:
 			gpio_set_value(GPIO_AP1300_POWER_LED, 1);
 			gpio_set_value(GPIO_AP1300_INET_LED, 0);
+			break;
+		case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
+			gpio_set_value(GPIO_AP4220_POWER_LED, 1);
+			gpio_set_value(GPIO_AP4220_2GWIFI_LED, 0);
+			gpio_set_value(GPIO_AP4220_5GWIFI_LED, 0);
 			break;
 		default:
 			break;
