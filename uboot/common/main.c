@@ -322,8 +322,8 @@ int abortboot(int bootdelay)
 				stopstr[stopstr_len++] = c;
 
 			/* for debug */
-			if (stopstr_len == strlen("gl")) {
-				if (strncmp(stopstr, "gl", strlen("gl")) == 0) {
+			if (stopstr_len == strlen("")) {
+				if (strncmp(stopstr, "", strlen("")) == 0) {
 					abort = 1;
 					bootdelay = 0;
 #ifdef CONFIG_WINDOWS_UPGRADE_SUPPORT
