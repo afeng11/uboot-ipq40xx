@@ -978,8 +978,8 @@ void LED_INIT(void)
 			gpio_set_value(GPIO_AP1300_INET_LED, 0);
 			break;
 		case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
-			gpio_set_value(GPIO_AP4220_POWER_LED, 1);
-			gpio_set_value(GPIO_AP4220_2GWIFI_LED, 0);
+			gpio_set_value(GPIO_AP4220_POWER_LED, 0);
+			gpio_set_value(GPIO_AP4220_2GWIFI_LED, 1);
 			gpio_set_value(GPIO_AP4220_5GWIFI_LED, 0);
 			break;
 		case MACH_TYPE_IPQ40XX_AP_DK04_1_C1:
@@ -1006,8 +1006,8 @@ void LED_BOOTING(void)
 			gpio_set_value(GPIO_AP1300_INET_LED, 0);
 			break;
 		case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
-			gpio_set_value(GPIO_AP4220_POWER_LED, 1);
-			gpio_set_value(GPIO_AP4220_2GWIFI_LED, 0);
+			gpio_set_value(GPIO_AP4220_POWER_LED, 0);
+			gpio_set_value(GPIO_AP4220_2GWIFI_LED, 1);
 			gpio_set_value(GPIO_AP4220_5GWIFI_LED, 0);
 			break;
 		default:

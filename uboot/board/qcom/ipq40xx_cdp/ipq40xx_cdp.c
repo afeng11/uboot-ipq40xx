@@ -596,11 +596,11 @@ void light_all_led(unsigned int machid)
 		break;
 	case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
 		mdelay(1);
-		writel(GPIO_OUT, GPIO_IN_OUT_ADDR(GPIO_AP4220_POWER_LED));
+		writel(GPIO_IN, GPIO_IN_OUT_ADDR(GPIO_AP4220_POWER_LED));
 		mdelay(1);
 		writel(GPIO_OUT, GPIO_IN_OUT_ADDR(GPIO_AP4220_2GWIFI_LED));
 		mdelay(1);
-		writel(GPIO_OUT, GPIO_IN_OUT_ADDR(GPIO_AP4220_5GWIFI_LED));
+		writel(GPIO_IN, GPIO_IN_OUT_ADDR(GPIO_AP4220_5GWIFI_LED));
 		mdelay(1);
 		break;
 	case MACH_TYPE_IPQ40XX_AP_DK01_1_C1:
