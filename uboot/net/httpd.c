@@ -152,7 +152,7 @@ int do_http_upgrade( const ulong size, const int upgrade_type )
 	if ( upgrade_type == WEBFAILSAFE_UPGRADE_TYPE_UBOOT ) {
 		printf( "\n\n****************************\n*     U-BOOT UPGRADING     *\n* DO NOT POWER OFF DEVICE! *\n****************************\n\n" );
 
-		sprintf(cmd, "sf probe && sf erase 0x%x 0x%x && sf write 0x88000000 0x%x 0x%x", 
+		sprintf(cmd, "sf probe && sf erase 0x%x 0x%x && sf write 0x88000000 0x%x 0x%lx", 
 			CONFIG_UBOOT_START, CONFIG_UBOOT_SIZE, CONFIG_UBOOT_START, size);
 		if(size > CONFIG_UBOOT_SIZE)
 			return 0;
@@ -172,12 +172,12 @@ int do_http_upgrade( const ulong size, const int upgrade_type )
 						printf("Firmware oversize! Not flashing.\n");
 						return 0;
 					}
-					sprintf(cmd, "sf probe && sf erase 0x%x 0x%x && sf write 0x88000000 0x%x 0x%x",
+					sprintf(cmd, "sf probe && sf erase 0x%x 0x%x && sf write 0x88000000 0x%x 0x%lx",
 						openwrt_firmware_start, openwrt_firmware_size, openwrt_firmware_start, size);
 					break;
 				case MACH_TYPE_IPQ40XX_AP_DK01_1_C2:
 				case MACH_TYPE_IPQ40XX_AP_DK01_AP4220:
-					sprintf(cmd, "nand device 1 && nand erase 0x%x 0x%x && nand write 0x88000000 0x%x 0x%x",
+					sprintf(cmd, "nand device 1 && nand erase 0x%x 0x%x && nand write 0x88000000 0x%x 0x%lx",
 						openwrt_firmware_start, openwrt_firmware_size, openwrt_firmware_start, size);
 					break;
 				default:
