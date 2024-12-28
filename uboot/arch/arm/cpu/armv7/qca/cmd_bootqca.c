@@ -279,8 +279,10 @@ static int do_boot_signedimg(cmd_tbl_t *cmdtp, int flag, int argc, char *const a
 		if (run_command(runcmd, 0) != CMD_RET_SUCCESS)
 			return CMD_RET_FAILURE;
 
+#ifdef CONFIG_CMD_UBI
 		kernel_img_info.kernel_load_size =
 			(unsigned int)ubi_get_volume_size("kernel");
+#endif
 #ifdef CONFIG_QCA_MMC
 	} else if (sfi->flash_type == SMEM_BOOT_MMC_FLASH || (gboard_param->nor_emmc_available == 1)) {
 		blk_dev = mmc_get_dev(host->dev_num);
@@ -578,3 +580,21 @@ static int do_bootipq(cmd_tbl_t *cmdtp, int flag, int argc, char *const argv[])
 U_BOOT_CMD(bootipq, 2, 0, do_bootipq,
 	   "bootipq from flash device",
 	   "bootipq [debug] - Load image(s) and boot the kernel\n");
+	   
+static int do_config_select(cmd_tbl_t *cmdtp, int flag, int argc, char *const argv[])
+{
+	int addr, ret;
+	char runcmd[256];
+	if (argc > 1)
+		addr = simple_strtol(argv[1], NULL, 16);
+	else
+		addr = CONFIG_SYS_LOAD_ADDR;
+	ret = config_select(addr, gboard_param->dtb_config_name,
+				runcmd, sizeof(runcmd));
+	if (!ret)
+		setenv("bootfdtcmd", runcmd);
+	return ret;
+}
+U_BOOT_CMD(cfgsel, 2, 0, do_config_select,
+	   "cfgsel select config from FIT image",
+	   "cfgsel [addr] - Select config from FIT image and set $bootfdtcmd\n");

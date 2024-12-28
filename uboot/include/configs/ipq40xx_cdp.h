@@ -269,7 +269,6 @@ typedef struct {
 #define CONFIG_IPADDR	192.168.1.1
 #define CONFIG_SERVERIP	192.168.1.2
 #define CONFIG_IPQ_NO_MACS	2
-#define CONFIG_BOOTSTOPKEY	""
 
 /*
  * CRASH DUMP ENABLE
@@ -303,6 +302,7 @@ typedef struct {
 #define CONFIG_SYS_MMC_ENV_DEV  0
 #endif
 
+#define CONFIG_LZMA
 
 #define CONFIG_MTD_DEVICE
 #define CONFIG_MTD_PARTITIONS

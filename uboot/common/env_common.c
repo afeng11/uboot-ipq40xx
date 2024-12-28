@@ -131,8 +131,7 @@ const uchar default_environment[] = {
 #ifdef	CONFIG_EXTRA_ENV_SETTINGS
 	CONFIG_EXTRA_ENV_SETTINGS
 #endif
-	"bootstopkey=" CONFIG_BOOTSTOPKEY  "\0"
-	"\0"
+
 };
 #else
 
